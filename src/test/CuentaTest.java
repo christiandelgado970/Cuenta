@@ -13,11 +13,15 @@ import cuenta.Cuenta;
 class CuentaTest {
 
 	static Cuenta cuentaAux;
+	static Cuenta cuentaUsuario1;
+	static Cuenta cuentaUsuario2;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		
 		cuentaAux = new Cuenta("1001","Cristian",100);
+		cuentaUsuario1 = new Cuenta("12345","Mario", 50.0);
+		cuentaUsuario2 = new Cuenta("67890","Luigi", 0.0);
 	}
 
 	@AfterAll
@@ -32,7 +36,11 @@ class CuentaTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
+	
+	///////////////////////////
+	///Test Ingresos Inicio////
+	///////////////////////////
+	
 	@Test
 	void testIngresar() {
 		
@@ -46,6 +54,14 @@ class CuentaTest {
 		cuentaAux.ingresar(-100);
 		assertEquals(cuentaAux.getSaldo(),100);
 	}
+	
+	///////////////////////////
+	/////Test Ingresos Fin/////
+	///////////////////////////
+	
+	///////////////////////////
+	///Test Reintegros Inicio//	
+	///////////////////////////
 	
 	@Test
 	void testRetirar() {
@@ -67,4 +83,30 @@ class CuentaTest {
 		cuentaAux.retirar(-150);
 		assertEquals(cuentaAux.getSaldo(),100);
 	}
+	
+	///////////////////////////
+	////Test Reintegros Fin////
+	///////////////////////////
+	
+	//////////////////////////
+	/////Test Clase Prat4////
+	/////////////////////////
+	
+	@Test
+	void testClase() {
+	
+		
+		cuentaUsuario1.retirar(200);
+		cuentaUsuario2.retirar(350);
+		cuentaUsuario1.ingresar(100);
+		cuentaUsuario2.retirar(200);
+		cuentaUsuario2.retirar(150);
+		cuentaUsuario1.retirar(200);
+		cuentaUsuario2.ingresar(50);
+		cuentaUsuario2.retirar(100);
+		
+		assertEquals(cuentaUsuario1.getSaldo(),-250);
+		assertEquals(cuentaUsuario2.getSaldo(),-450);
+	}
+	
 }

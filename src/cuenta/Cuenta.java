@@ -1,13 +1,18 @@
 package cuenta;
 
+import java.util.ArrayList;
+
 public class Cuenta {
 	
 	String mNumero; 
     String nTitular;
     double cSaldo;
+    ArrayList <Movimiento> mMovimientos = new ArrayList<Movimiento>();
     
     public Cuenta(String numero, String titular, double saldo) {
     	
+    	this.mNumero = numero;
+    	this.nTitular = titular;
     	this.cSaldo = saldo;
     }
 
@@ -40,24 +45,26 @@ public class Cuenta {
 	public  void ingresar(int i) {
 		
 		if(i <= 0) {
-			System.out.println("No puedes ingresar menos algo");
+			System.out.println("Cuenta: "+ this.mNumero +" no puedes ingresar menos algo");
 		}
 		else {
 			setSaldo(this.getSaldo() + i);
+			mMovimientos.add(new Movimiento(i,signo.D,"Detalles"));
 		}
-		
 	}
 	
 	public void retirar(int i) {
 		
 		if(i <= 0) {
-			System.out.println("No se puede retirar menos algo");
+			System.out.println("Cuenta: "+ this.mNumero +" no se puede retirar menos algo");
 		}
 		else {
-			if((this.getSaldo() - i) >= 0)
+			if((this.getSaldo() - i) >= -500) {
 				setSaldo(this.getSaldo() - i);
+				mMovimientos.add(new Movimiento(i,signo.H,"Detalles"));
+			}
 			else
-				System.out.println("No tienes suficiente dinero");
+				System.out.println("Cuenta: "+ this.mNumero +" no tienes suficiente dinero");
 		}
 		
 	}
