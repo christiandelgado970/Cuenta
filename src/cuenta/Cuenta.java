@@ -7,7 +7,9 @@ public class Cuenta {
     double cSaldo;
     
     public Cuenta(String numero, String titular, double saldo) {
+    	System.out.println("Inicio " + getSaldo());
     	this.cSaldo = saldo;
+    	System.out.println("Inicio 2" + getSaldo());
     }
 
 	public String getNumero() {
@@ -36,16 +38,21 @@ public class Cuenta {
 		this.cSaldo = cSaldo;
 	}
 
+	public  void ingresar(int i) {
+		
+		System.out.println(getSaldo());
+		setSaldo(this.getSaldo() + i);
+		
+	}
 	
 	public void retirar(int i) {
-		setSaldo(100);
+		
+		System.out.println(getSaldo());
+		setSaldo(this.getSaldo() - i);
 		
 	}
 	
-	public  void ingresar(int i) {
-		setSaldo(200);
-		
-	}
+	
 
 	
 
