@@ -41,9 +41,30 @@ class CuentaTest {
 	}
 	
 	@Test
+	void testIngresarMenosAlgo() {
+		
+		cuentaAux.ingresar(-100);
+		assertEquals(cuentaAux.getSaldo(),100);
+	}
+	
+	@Test
 	void testRetirar() {
 		
 		cuentaAux.retirar(100);
 		assertEquals(cuentaAux.getSaldo(),0);
+	}
+	
+	@Test
+	void testRetirarMenosAlgo() {
+		
+		cuentaAux.retirar(-100);
+		assertEquals(cuentaAux.getSaldo(),100);
+	}
+	
+	@Test
+	void testRetirarMenosDeLoQueTienes() {
+		
+		cuentaAux.retirar(-150);
+		assertEquals(cuentaAux.getSaldo(),100);
 	}
 }
