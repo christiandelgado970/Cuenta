@@ -12,8 +12,12 @@ import cuenta.Cuenta;
 
 class CuentaTest {
 
+	static Cuenta cuentaAux;
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
+		cuentaAux = new Cuenta("1001","Cristian",100);
 	}
 
 	@AfterAll
@@ -30,11 +34,13 @@ class CuentaTest {
 
 	@Test
 	void testIngresar() {
-		Cuenta.ingresar(100);
+		cuentaAux.ingresar(100);
+		assertEquals(cuentaAux.getSaldo(),200);
 	}
 	
 	@Test
 	void testRetirar() {
-		Cuenta.retirar(100);
+		cuentaAux.retirar(100);
+		assertEquals(cuentaAux.getSaldo(),100);
 	}
 }
